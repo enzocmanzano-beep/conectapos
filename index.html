@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Central digital de pós-venda para abertura e acompanhamento de chamados." />
+  <title>ConectaPós | Central de Atendimento</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#" aria-label="Página inicial ConectaPós">
+      <span class="brand-mark">C</span>
+      <span>Conecta<span>Pós</span></span>
+    </a>
+    <nav aria-label="Menu principal">
+      <a class="nav-item active" href="#inicio"><span class="icon">⌂</span> Visão geral</a>
+      <a class="nav-item" href="#chamados"><span class="icon">▤</span> Meus chamados <span class="badge">3</span></a>
+      <a class="nav-item" href="#ajuda"><span class="icon">?</span> Central de ajuda</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="support-card">
+        <span class="support-icon">✦</span>
+        <strong>Precisa de ajuda?</strong>
+        <p>Nossa equipe está disponível de segunda a sexta.</p>
+        <button id="chatButton" class="text-button">Falar pelo chat →</button>
+      </div>
+      <div class="user-card">
+        <div class="avatar">EM</div>
+        <div><strong>Enzo Manzano</strong><small>Cliente</small></div>
+        <button class="dots" aria-label="Opções da conta">•••</button>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <header class="topbar">
+      <div class="mobile-brand"><span class="brand-mark">C</span> ConectaPós</div>
+      <button class="notification" aria-label="Notificações">♢<span></span></button>
+      <div class="status"><i></i> Todos os serviços operando</div>
+    </header>
+
+    <section class="content" id="inicio">
+      <div class="welcome-row">
+        <div>
+          <p class="eyebrow">TERÇA-FEIRA, 8 DE SETEMBRO</p>
+          <h1>Olá, Enzo. Como podemos ajudar?</h1>
+          <p class="subtitle">Abra uma solicitação ou acompanhe seus atendimentos sem precisar ligar.</p>
+        </div>
+        <button class="primary-button" id="openTicket"><span>＋</span> Abrir novo chamado</button>
+      </div>
+
+      <div class="metrics" aria-label="Resumo dos chamados">
+        <article class="metric-card"><span class="metric-icon blue">▤</span><div><small>Chamados abertos</small><strong id="openCount">3</strong><em>2 atualizados hoje</em></div></article>
+        <article class="metric-card"><span class="metric-icon amber">◴</span><div><small>Em atendimento</small><strong>2</strong><em>Dentro do prazo</em></div></article>
+        <article class="metric-card"><span class="metric-icon green">✓</span><div><small>Resolvidos este mês</small><strong>12</strong><em>+20% que agosto</em></div></article>
+        <article class="metric-card satisfaction"><div><small>Sua satisfação</small><strong>4,8 <span>/ 5</span></strong><div class="stars">★★★★★</div></div></article>
+      </div>
+
+      <section class="panel" id="chamados">
+        <div class="panel-header">
+          <div><h2>Chamados recentes</h2><p>Acompanhe o andamento das suas solicitações</p></div>
+          <div class="filters" role="group" aria-label="Filtrar chamados">
+            <button class="filter active" data-filter="Todos">Todos</button>
+            <button class="filter" data-filter="Aberto">Abertos</button>
+            <button class="filter" data-filter="Em atendimento">Em atendimento</button>
+          </div>
+        </div>
+        <div class="ticket-list" id="ticketList">
+          <article class="ticket" data-status="Em atendimento">
+            <span class="ticket-type technical">⚙</span>
+            <div class="ticket-main"><div class="ticket-title"><strong>Falha ao gerar relatório mensal</strong><span class="pill progress">Em atendimento</span></div><p>Protocolo #CP-2026-0847 · Problema técnico</p><div class="sla"><span><i style="width:68%"></i></span><small>SLA: 6h restantes</small></div></div>
+            <div class="ticket-side"><small>Atualizado há 18 min</small><b>›</b></div>
+          </article>
+          <article class="ticket" data-status="Aberto">
+            <span class="ticket-type improvement">◇</span>
+            <div class="ticket-main"><div class="ticket-title"><strong>Adicionar filtro por período</strong><span class="pill open">Aberto</span></div><p>Protocolo #CP-2026-0842 · Sugestão de melhoria</p><div class="sla"><span><i style="width:38%"></i></span><small>SLA: 18h restantes</small></div></div>
+            <div class="ticket-side"><small>Atualizado há 2h</small><b>›</b></div>
+          </article>
+          <article class="ticket" data-status="Aguardando cliente">
+            <span class="ticket-type question">?</span>
+            <div class="ticket-main"><div class="ticket-title"><strong>Dúvida sobre permissões de acesso</strong><span class="pill waiting">Aguardando você</span></div><p>Protocolo #CP-2026-0819 · Dúvida</p><div class="waiting-note">Precisamos de uma informação sua para continuar.</div></div>
+            <div class="ticket-side"><small>Atualizado ontem</small><b>›</b></div>
+          </article>
+        </div>
+        <button class="see-all">Ver todos os chamados →</button>
+      </section>
+
+      <section class="quick-help" id="ajuda">
+        <div><p class="eyebrow">RESOLVA MAIS RÁPIDO</p><h2>Talvez você nem precise abrir um chamado</h2></div>
+        <div class="help-links">
+          <button data-help="senha"><span>⌁</span><div><strong>Redefinir minha senha</strong><small>Recupere o acesso em poucos passos</small></div><b>›</b></button>
+          <button data-help="acesso"><span>♙</span><div><strong>Gerenciar acessos</strong><small>Adicione ou remova usuários</small></div><b>›</b></button>
+          <button data-help="base"><span>◫</span><div><strong>Base de conhecimento</strong><small>Consulte guias e respostas</small></div><b>›</b></button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <dialog id="ticketDialog">
+    <form id="ticketForm" method="dialog">
+      <div class="dialog-head"><div><p class="eyebrow">NOVO ATENDIMENTO</p><h2>Como podemos ajudar?</h2></div><button type="button" class="close" aria-label="Fechar">×</button></div>
+      <label>Tipo de solicitação<select id="ticketType" required><option value="">Selecione uma opção</option><option>Problema técnico</option><option>Dúvida</option><option>Solicitação de manutenção</option><option>Reclamação</option><option>Sugestão de melhoria</option></select></label>
+      <label>Assunto<input id="ticketSubject" required minlength="5" placeholder="Resuma o que aconteceu" /></label>
+      <label>Conte os detalhes<textarea id="ticketDescription" required rows="4" placeholder="Explique quando o problema começou e como ele afeta você"></textarea></label>
+      <label class="upload">⇧ <span><strong>Anexar imagem ou documento</strong><small>PNG, JPG ou PDF de até 10 MB</small></span><input type="file" accept="image/*,.pdf" /></label>
+      <div class="ai-note">✦ <span><strong>Triagem inteligente</strong><small>Seu chamado será classificado e encaminhado automaticamente para a equipe certa.</small></span></div>
+      <div class="dialog-actions"><button type="button" class="secondary close-action">Cancelar</button><button type="submit" class="primary-button">Enviar chamado</button></div>
+    </form>
+  </dialog>
+
+  <div class="chat-panel" id="chatPanel" aria-hidden="true"><div class="chat-head"><div><span class="bot">✦</span><div><strong>Assistente Conecta</strong><small><i></i> Online agora</small></div></div><button id="closeChat">×</button></div><div class="chat-body"><div class="message bot-message">Olá, Enzo! Posso ajudar a encontrar uma solução ou abrir um chamado para você. O que aconteceu?</div><div class="suggestions"><button>Meu sistema está com erro</button><button>Quero acompanhar um protocolo</button><button>Tenho uma dúvida</button></div></div><div class="chat-input"><input placeholder="Digite sua mensagem..." aria-label="Mensagem"><button>➤</button></div></div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
