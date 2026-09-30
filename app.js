@@ -162,5 +162,67 @@ document.querySelector('#closeChat').addEventListener('click', () => {
   chat.setAttribute('aria-hidden', 'true');
 });
 document.querySelectorAll('.suggestions button').forEach(button => button.addEventListener('click', () => showToast('Opção selecionada: ' + button.textContent)));
-document.querySelectorAll('[data-help]').forEach(button => button.addEventListener('click', () => showToast('Conteúdo de ajuda aberto.')));
+const helpContent = {
+  senha: {
+    eyebrow: 'SEGURANÇA',
+    title: 'Redefinir minha senha',
+    body: '<p>Informe o e-mail da conta para simular o envio das instruções de recuperação.</p><label>E-mail<input id="recoveryEmail" type="email" placeholder="seuemail@exemplo.com" required></label>',
+    action: 'Simular envio do link'
+  },
+  acesso: {
+    eyebrow: 'MINHA CONTA',
+    title: 'Gerenciar acessos',
+    body: '<p>Consulte os acessos vinculados à sua conta.</p><div class="access-user"><div class="avatar">EM</div><div><strong>Enzo Manzano</strong><small>Administrador da conta</small></div><span>Ativo</span></div><p class="demo-note">A inclusão e remoção de usuários dependerá da integração com o sistema da empresa.</p>',
+    action: 'Entendi'
+  },
+  base: {
+    eyebrow: 'CENTRAL DE AJUDA',
+    title: 'Base de conhecimento',
+    body: '<div class="knowledge-list"><button type="button" data-article="Como acompanhar um chamado">Como acompanhar um chamado <b>›</b></button><button type="button" data-article="Como enviar um anexo">Como enviar um anexo <b>›</b></button><button type="button" data-article="Entenda os status do atendimento">Entenda os status do atendimento <b>›</b></button></div>',
+    action: 'Fechar'
+  }
+};
+
+const helpDialog = document.createElement('dialog');
+helpDialog.id = 'helpDialog';
+helpDialog.innerHTML = '<div class="help-dialog-content"><div class="dialog-head"><div><p class="eyebrow" id="helpEyebrow"></p><h2 id="helpTitle"></h2></div><button type="button" class="close-help" aria-label="Fechar">×</button></div><div id="helpBody"></div><div class="dialog-actions"><button type="button" class="secondary close-help">Cancelar</button><button type="button" class="primary-button" id="helpAction"></button></div></div>';
+document.body.appendChild(helpDialog);
+
+function openHelpDialog(key) {
+  const content = helpContent[key];
+  document.querySelector('#helpEyebrow').textContent = content.eyebrow;
+  document.querySelector('#helpTitle').textContent = content.title;
+  document.querySelector('#helpBody').innerHTML = content.body;
+  document.querySelector('#helpAction').textContent = content.action;
+  helpDialog.dataset.section = key;
+  helpDialog.showModal();
+}
+
+document.querySelectorAll('[data-help]').forEach(button => {
+  button.addEventListener('click', () => openHelpDialog(button.dataset.help));
+});
+
+document.querySelectorAll('.close-help').forEach(button => {
+  button.addEventListener('click', () => helpDialog.close());
+});
+
+document.querySelector('#helpAction').addEventListener('click', () => {
+  if (helpDialog.dataset.section === 'senha') {
+    const email = document.querySelector('#recoveryEmail').value.trim();
+    if (!email || !email.includes('@')) {
+      showToast('Digite um e-mail válido para continuar.');
+      return;
+    }
+    helpDialog.close();
+    showToast('Demonstração: instruções de recuperação preparadas.');
+    return;
+  }
+  helpDialog.close();
+});
+
+helpDialog.addEventListener('click', event => {
+  const article = event.target.closest('[data-article]');
+  if (!article) return;
+  showToast(article.dataset.article + ': conteúdo demonstrativo aberto.');
+});
 document.querySelector('.see-all').addEventListener('click', () => showToast('Você já está vendo os chamados mais recentes.'));
