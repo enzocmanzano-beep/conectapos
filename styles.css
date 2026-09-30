@@ -3,3 +3,17 @@
 .delete-ticket{border:0;background:#fff0f0;color:#c93b3b;width:30px;height:30px;border-radius:8px;display:grid;place-items:center;cursor:pointer;font-size:14px;transition:.2s}
 .delete-ticket:hover{background:#ffdede;transform:scale(1.05)}
 @media(max-width:760px){.ticket-side:has(.delete-ticket){display:flex;grid-column:2;justify-content:flex-end}.ticket-side:has(.delete-ticket) small,.ticket-side:has(.delete-ticket) b{display:none}}
+
+#helpDialog{border:0;border-radius:16px;padding:0;width:min(520px,calc(100% - 28px));box-shadow:0 24px 90px #0920344f}
+#helpDialog::backdrop{background:#071c2cad;backdrop-filter:blur(3px)}
+.help-dialog-content{padding:26px}
+.help-dialog-content>div:nth-child(2)>p{color:var(--muted);font-size:13px;line-height:1.55}
+.close-help{border:0;background:#f0f4f7;width:31px;height:31px;border-radius:8px;font-size:20px;cursor:pointer;color:#607582}
+.access-user{display:flex;align-items:center;gap:11px;border:1px solid var(--line);border-radius:10px;padding:13px;margin-top:14px}
+.access-user>div:nth-child(2){display:flex;flex:1;flex-direction:column}
+.access-user strong{font-size:13px}.access-user small{color:var(--muted);font-size:11px;margin-top:2px}
+.access-user>span{color:var(--green);background:#e9f8f1;border-radius:12px;padding:4px 8px;font-size:10px;font-weight:700}
+.demo-note{background:#f4f7fa;padding:10px;border-radius:8px;font-size:11px!important}
+.knowledge-list{display:flex;flex-direction:column;gap:8px}
+.knowledge-list button{border:1px solid var(--line);background:#f9fbfd;border-radius:9px;padding:13px;text-align:left;color:var(--text);font:600 12px "DM Sans";cursor:pointer}
+.knowledge-list button:hover{border-color:#176bff;color:#176bff}.knowledge-list b{float:right;font-size:17px}
