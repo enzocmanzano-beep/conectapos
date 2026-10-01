@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Apresentação do projeto ConectaPós — Grupo 8">
+<title>Apresentação ConectaPós — Grupo 8</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#071a29;color:#fff;font-family:Arial,sans-serif;overflow:hidden}
+header{height:64px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;background:#0d2b40;border-bottom:1px solid #ffffff20}
+.brand{font-weight:800;font-size:20px}.brand span{color:#45a6ff}.actions{display:flex;gap:10px}
+button,a{border:0;border-radius:9px;padding:10px 14px;font-weight:700;cursor:pointer;text-decoration:none;font-size:13px}
+.download{background:#fff;color:#16384f}.fullscreen{background:#176bff;color:#fff}
+main{height:calc(100vh - 124px);display:grid;place-items:center;padding:18px}
+.slide{display:none;max-width:100%;max-height:100%;aspect-ratio:16/9;box-shadow:0 18px 60px #0008;border-radius:8px}
+.slide.active{display:block}
+footer{height:60px;display:flex;align-items:center;justify-content:center;gap:18px}
+.nav{background:#176bff;color:white;width:44px;height:40px;font-size:20px;padding:0}.nav:disabled{opacity:.35;cursor:not-allowed}
+.counter{min-width:90px;text-align:center;color:#bcd0dd;font-size:13px}
+.dots{display:flex;gap:7px}.dot{width:8px;height:8px;border-radius:50%;background:#ffffff40;padding:0}.dot.active{background:#45a6ff;transform:scale(1.25)}
+@media(max-width:650px){header{padding:0 12px}.brand{font-size:15px}.download{display:none}main{padding:8px}.fullscreen{font-size:0}.fullscreen:after{content:"⛶";font-size:18px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">Conecta<span>Pós</span> — Grupo 8</div>
+  <div class="actions">
+    <a class="download" href="Apresentacao_ConectaPos_Grupo8_Final.pptx" download>Baixar PowerPoint</a>
+    <button class="fullscreen" type="button" onclick="document.documentElement.requestFullscreen?.()">Tela cheia</button>
+  </div>
+</header>
+<main id="deck">
+  <img class="slide active" src="slide-1.png" alt="Slide 1 de 5">
+  <img class="slide" src="slide-2.png" alt="Slide 2 de 5">
+  <img class="slide" src="slide-3.png" alt="Slide 3 de 5">
+  <img class="slide" src="slide-4.png" alt="Slide 4 de 5">
+  <img class="slide" src="slide-5.png" alt="Slide 5 de 5">
+</main>
+<footer>
+  <button class="nav" id="prev" aria-label="Slide anterior">‹</button>
+  <div class="dots" id="dots"></div>
+  <span class="counter" id="counter">1 de 5</span>
+  <button class="nav" id="next" aria-label="Próximo slide">›</button>
+</footer>
+<script>
+const slides=[...document.querySelectorAll('.slide')],dotsBox=document.querySelector('#dots'),counter=document.querySelector('#counter'),prev=document.querySelector('#prev'),next=document.querySelector('#next');let current=0;
+slides.forEach((_,i)=>{const b=document.createElement('button');b.className='dot'+(i===0?' active':'');b.ariaLabel='Ir para o slide '+(i+1);b.onclick=()=>show(i);dotsBox.appendChild(b)});
+function show(i){current=Math.max(0,Math.min(slides.length-1,i));slides.forEach((s,n)=>s.classList.toggle('active',n===current));[...dotsBox.children].forEach((d,n)=>d.classList.toggle('active',n===current));counter.textContent=(current+1)+' de '+slides.length;prev.disabled=current===0;next.disabled=current===slides.length-1}
+prev.onclick=()=>show(current-1);next.onclick=()=>show(current+1);document.addEventListener('keydown',e=>{if(['ArrowRight',' ','PageDown'].includes(e.key))show(current+1);if(['ArrowLeft','PageUp'].includes(e.key))show(current-1)});show(0);
+</script>
+</body>
+</html>
